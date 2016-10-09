@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "build": "WEBPACK_ENV=build webpack",
-    "dev": "WEBPACK_ENV=dev webpack --progress --colors --watch"
+    "build": "npm run compile-client && npm run compile-server",
+    "compile-client": "NODE_ENV=production webpack --progress --config webpack.client.config.js",
+    "compile-server": "NODE_ENV=production webpack --progress --config webpack.server.config.js"
   },
   "author": "",
   "license": "ISC",
