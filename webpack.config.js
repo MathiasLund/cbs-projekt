@@ -1,20 +1,20 @@
 var webpack = require('webpack');
+var path = require('path');
 
 module.exports = {
-    entry: './app/server.js',
+    entry: './app/client.js',
     output: {
         path: 'dist',
-        filename: 'server.js'
+        filename: 'client.js'
     },
     module: {
         loaders: [
             {
-                test: /\.js/,
-                loader: 'babel',
-                include: __dirname + '/src',
+                test: /.jsx?$/,
+                loader: 'babel-loader',
                 exclude: /node_modules/,
                 query: {
-                    presets: ['es2015']
+                    presets: ['es2015','react']
                 }
             }
         ],
