@@ -7,7 +7,9 @@
     "start": "node server.js",
     "build": "npm run compile-client && npm run compile-server",
     "compile-client": "NODE_ENV=production webpack --progress --config webpack.client.config.js",
-    "compile-server": "NODE_ENV=production webpack --progress --config webpack.server.config.js"
+    "compile-server": "NODE_ENV=production webpack --progress --config webpack.server.config.js",
+    "watch": "webpack -w --config webpack.server.config.js",
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
