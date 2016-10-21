@@ -6,7 +6,7 @@ export default class Table extends Component {
         return (
           <div className="container content-sm">
 
-            <div className="headline"><h2>Forelæsninger</h2></div>
+            <div className="headline"><h2>Forelæsninger penis</h2></div>
             <div className="row margin-bottom-20">
               <div className="col-md-3 col-sm-6">
                 <div className="thumbnails thumbnail-style thumbnail-kenburn">
