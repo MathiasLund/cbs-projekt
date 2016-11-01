@@ -5,9 +5,12 @@ import App from './components/App'
 import Table from './components/Table'
 import CourseBox from './components/CourseBox'
 import NavBar from './components/NavBar'
+import API from './api'
 let app = express()
 
 app.get('/', (req, res) => {
+
+    API.getCourses();
 
     let component = renderToString(
       <App>
