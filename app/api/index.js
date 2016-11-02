@@ -2,25 +2,25 @@ import fetch from 'isomorphic-fetch'
 
 var BASE_URL = 'http://localhost:9999'
 var COURSES_URL = '/api/course/'
-var DECRYPT_KEY = '40674244454045cb9a70040a30e1c007';
 
 exports.getCourses = function() {
   var URL = BASE_URL + COURSES_URL + "6";
   fetch(URL)
     .then(function(response) {
       return response.json()
-    }).then(function(json) {
-      _handleResponse(json)
+    }).then(function(string) {
+      _handleResponse(string)
     }).catch(function(ex) {
       console.log('parsing failed', ex)
     })
 }
 
-function _handleResponse(json) {
-    base64decode(json);
+function _handleResponse(string) {
+    let decryptedString = base64decode(string);
+    let json = JSON.parse(decryptedString);
+    console.log(json[0].code);
 }
 
-function base64decode(json) {
-    let string = new Buffer(json, 'base64').toString('ascii');
-    console.log(string);
+function base64decode(string) {
+    return new Buffer(string, 'base64').toString('ascii');
 }
