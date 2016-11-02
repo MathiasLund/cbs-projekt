@@ -10,7 +10,10 @@ let app = express()
 
 app.get('/', (req, res) => {
 
-    API.getCourses();
+    API.getCourses()
+      .then(res => {
+          console.log(res)
+      })
 
     let component = renderToString(
       <App>

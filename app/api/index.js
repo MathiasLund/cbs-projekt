@@ -5,20 +5,16 @@ var COURSES_URL = '/api/course/'
 
 exports.getCourses = function() {
   var URL = BASE_URL + COURSES_URL + "6";
-  fetch(URL)
-    .then(function(response) {
-      return response.json()
-    }).then(function(string) {
-      _handleResponse(string)
-    }).catch(function(ex) {
-      console.log('parsing failed', ex)
-    })
+  return fetch(URL)
+    .then(response => response.json())
+    .then(string => _handleResponse(string))
+    .catch(ex => console.log('parsing failed', ex))
 }
 
 function _handleResponse(string) {
     let decryptedString = base64decode(string);
     let json = JSON.parse(decryptedString);
-    console.log(json[0].code);
+    return json;
 }
 
 function base64decode(string) {
