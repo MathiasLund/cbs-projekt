@@ -11,20 +11,19 @@ let app = express()
 app.get('/', (req, res) => {
 
     API.getCourses()
-      .then(res => {
-          console.log(res)
+      .then(courses => {
+        let component = renderToString(
+          <App>
+              <NavBar />
+              <CourseBox courses={courses} />
+          </App>
+        )
+
+        res.send(
+          component
+        );
       })
-
-    let component = renderToString(
-      <App>
-          <NavBar />
-          <CourseBox />
-      </App>
-    )
-
-    res.send(
-      component
-    );
 })
+
 
 module.exports = app
