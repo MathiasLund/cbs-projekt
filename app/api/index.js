@@ -12,8 +12,8 @@ exports.getCourses = function() {
     .catch(ex => console.log('parsing failed', ex))
 }
 
-exports.getLectures = function() {
-  var URL = BASE_URL + LECTURE_URL + "6";
+exports.getLectures = function(code) {
+  var URL = BASE_URL + LECTURE_URL + code;
   return fetch(URL)
     .then(response => response.json())
     .then(string => _handleResponse(string))

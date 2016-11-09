@@ -1,13 +1,19 @@
 import React, { Component } from 'react'
 
 export default class App extends Component {
+
     render() {
+
+        const headerStyle = {
+          paddingBottom: 20,
+          paddingTop: 20
+        };
+
         return (
+
           <div className="header">
             <div className="container">
-              <a className="logo" href="index.html">
-                <img src="assets/img/logo1-default.png" alt="Logo" />
-              </a>
+              <h1 style={headerStyle}>Undervisningsevaluering</h1>
             </div>
 
             <div className="collapse navbar-collapse mega-menu navbar-responsive-collapse">
