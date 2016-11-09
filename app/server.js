@@ -25,5 +25,8 @@ app.get('/', (req, res) => {
       })
 })
 
+app.get('/lectures/:courseCode', function (req, res) {
+    res.send(req.params)
+})
 
 module.exports = app
