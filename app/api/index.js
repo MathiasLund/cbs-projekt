@@ -3,17 +3,24 @@ import fetch from 'isomorphic-fetch'
 var BASE_URL = 'http://localhost:9999'
 var COURSES_URL = '/api/course/'
 var LECTURE_URL = '/api/lecture/'
+var REVIEW_URL = '/api/review/'
 
 exports.getCourses = function() {
   var URL = BASE_URL + COURSES_URL + "6";
-  return fetch(URL)
-    .then(response => response.json())
-    .then(string => _handleResponse(string))
-    .catch(ex => console.log('parsing failed', ex))
+  return _fetch(URL);
 }
 
 exports.getLectures = function(code) {
   var URL = BASE_URL + LECTURE_URL + code;
+  return _fetch(URL);
+}  
+
+exports.getReviews = function(lectureId) {
+  var URL = BASE_URL + REVIEW_URL + lectureId;
+  return _fetch(URL);
+}
+
+function _fetch(URL) {
   return fetch(URL)
     .then(response => response.json())
     .then(string => _handleResponse(string))
