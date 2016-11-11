@@ -1,20 +1,20 @@
 import React, { Component } from 'react'
 
-export default class LectureBox extends Component {
+export default class ReviewBox extends Component {
     render() {
-      const {lectures} = this.props;
+      const {reviews} = this.props;
         return (
           <div className="container content-sm">
 
-            <div className="headline"><h2>Lectures</h2></div>
+            <div className="headline"><h2>Reviews</h2><small>Durum</small></div>
               <div className="row margin-bottom-20">
 
-                {lectures.map(lecture => {
+                {reviews.map(review => {
                     return(
                       <div className="col-md-3 col-sm-6">
                         <div className="thumbnails thumbnail-style thumbnail-kenburn">
                           <div className="caption">
-                            <h3><a className="hover-effect" href={"/reviews/" + lecture.id}>{lecture.startDate}</a></h3>
+                            <h3><a className="hover-effect" href="#">Her</a></h3>
                           </div>
                         </div>
                       </div>

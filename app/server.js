@@ -5,6 +5,7 @@ import App from './components/App'
 import Table from './components/Table'
 import CourseBox from './components/CourseBox'
 import LectureBox from './components/LectureBox'
+import ReviewBox from './components/ReviewBox'
 import NavBar from './components/NavBar'
 import API from './api'
 let app = express()
@@ -46,19 +47,20 @@ app.get('/lectures/:code', function (req, res) {
 
 app.get('/reviews/:id', function (req, res) {
 
-    API.getLectures(req.params.code)
-      .then(lectures => {
-        let component = renderToString(
-          <App>
-              <NavBar />
-              <LectureBox lectures={lectures} />
-          </App>
-        )
+   API.getReviews(req.params.id)
+    .then(reviews => {
+      res.send(reviews);/*
+      let component = renderToString(
+        <App>
+            <NavBar />
+            <ReviewBox reviews={reviews} />
+        </App>
+      )
 
-        res.send(
-          component
-        );
-      })
+      res.send(
+        component
+      );
+    })*/})
 
 })
 

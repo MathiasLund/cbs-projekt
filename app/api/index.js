@@ -13,10 +13,11 @@ exports.getCourses = function() {
 exports.getLectures = function(code) {
   var URL = BASE_URL + LECTURE_URL + code;
   return _fetch(URL);
-}  
+}
 
 exports.getReviews = function(lectureId) {
   var URL = BASE_URL + REVIEW_URL + lectureId;
+  console.log(URL);
   return _fetch(URL);
 }
 
