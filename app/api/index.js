@@ -17,7 +17,6 @@ exports.getLectures = function(code) {
 
 exports.getReviews = function(lectureId) {
   var URL = BASE_URL + REVIEW_URL + lectureId;
-  console.log(URL);
   return _fetch(URL);
 }
 

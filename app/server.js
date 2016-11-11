@@ -49,7 +49,6 @@ app.get('/reviews/:id', function (req, res) {
 
    API.getReviews(req.params.id)
     .then(reviews => {
-      res.send(reviews);/*
       let component = renderToString(
         <App>
             <NavBar />
@@ -60,7 +59,7 @@ app.get('/reviews/:id', function (req, res) {
       res.send(
         component
       );
-    })*/})
+    })
 
 })
 

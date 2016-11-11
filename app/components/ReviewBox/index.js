@@ -6,7 +6,7 @@ export default class ReviewBox extends Component {
         return (
           <div className="container content-sm">
 
-            <div className="headline"><h2>Reviews</h2><small>Durum</small></div>
+            <div className="headline"><h2>Reviews</h2> <small>Course</small></div>
               <div className="row margin-bottom-20">
 
                 {reviews.map(review => {
