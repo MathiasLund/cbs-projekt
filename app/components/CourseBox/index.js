@@ -14,7 +14,7 @@ export default class CourseBox extends Component {
                       <div className="col-md-3 col-sm-6">
                         <div className="thumbnails thumbnail-style thumbnail-kenburn">
                           <div className="caption">
-                            <h3><a className="hover-effect" href={"/" + course.displaytext}>{course.code}</a></h3>
+                            <h3><a className="hover-effect" href={"/lectures/" + course.displaytext}>{course.code}</a></h3>
                           </div>
                         </div>
                       </div>

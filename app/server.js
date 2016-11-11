@@ -26,7 +26,25 @@ app.get('/', (req, res) => {
       })
 })
 
-app.get('/:code', function (req, res) {
+app.get('/lectures/:code', function (req, res) {
+
+    API.getLectures(req.params.code)
+      .then(lectures => {
+        let component = renderToString(
+          <App>
+              <NavBar />
+              <LectureBox lectures={lectures} />
+          </App>
+        )
+
+        res.send(
+          component
+        );
+      })
+
+})
+
+app.get('/reviews/:id', function (req, res) {
 
     API.getLectures(req.params.code)
       .then(lectures => {
