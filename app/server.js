@@ -25,9 +25,11 @@ app.get('/', (req, res) => {
 })
 
 app.post('/login/auth', (req, res) => {
-    res.send(
-     req.params
-    );
+    let email = 'student@cbs.dk';
+    let pass = '12345';
+
+    
+
 })
 
 app.get('/courses', (req, res) => {
