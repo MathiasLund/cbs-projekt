@@ -7,11 +7,27 @@ import CourseBox from './components/CourseBox'
 import LectureBox from './components/LectureBox'
 import ReviewBox from './components/ReviewBox'
 import NavBar from './components/NavBar'
+import Login from './components/Login'
 import API from './api'
 let app = express()
 
 app.get('/', (req, res) => {
-    res.send("hey");
+    let component = renderToString(
+      <App>
+          <NavBar />
+          <Login />
+      </App>
+    )
+
+    res.send(
+      component
+    );
+})
+
+app.post('/login/auth', (req, res) => {
+    res.send(
+     req.params
+    );
 })
 
 app.get('/courses', (req, res) => {
