@@ -11,6 +11,10 @@ import API from './api'
 let app = express()
 
 app.get('/', (req, res) => {
+    res.send("hey");
+})
+
+app.get('/courses', (req, res) => {
 
     API.getCourses()
       .then(courses => {
