@@ -45,14 +45,13 @@ app.get('/lectures/:code', function (req, res) {
 
 })
 
-app.get('/reviews/:id', function (req, res) {
-
+app.get('/reviews/:date/:id', function (req, res) {
    API.getReviews(req.params.id)
     .then(reviews => {
       let component = renderToString(
         <App>
             <NavBar />
-            <ReviewBox reviews={reviews} />
+            <ReviewBox reviews={reviews} date={req.params.date} />
         </App>
       )
 
