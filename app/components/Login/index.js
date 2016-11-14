@@ -10,10 +10,15 @@ export default class Login extends Component {
 
                   <form method="POST" action="/login/auth">
                       <div className="form-group">
-                          <input type="email" name="email" />
-                          <input type="password" name="password" />
-                          <button type="submit">Login</button>
+                        <label for="usr">Email:</label>
+                        <input type="text" name="email" className="form-control" id="usr" />
                       </div>
+                      <div className="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" name="password" className="form-control" id="pwd" />
+                      </div>
+
+                      <button className="btn btn-primary" type="submit">Login</button>
                   </form>
 
               </div>

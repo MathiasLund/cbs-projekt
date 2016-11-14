@@ -1,6 +1,8 @@
 import express from 'express'
 import React from 'react'
 import { renderToString } from 'react-dom/server'
+import querystring from 'querystring'
+import bodyParser from 'body-parser'
 import App from './components/App'
 import Table from './components/Table'
 import CourseBox from './components/CourseBox'
@@ -10,6 +12,11 @@ import NavBar from './components/NavBar'
 import Login from './components/Login'
 import API from './api'
 let app = express()
+
+var jsonParser = bodyParser.json()
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
 
 app.get('/', (req, res) => {
     let component = renderToString(
@@ -24,12 +31,9 @@ app.get('/', (req, res) => {
     );
 })
 
-app.post('/login/auth', (req, res) => {
-    let email = 'student@cbs.dk';
-    let pass = '12345';
-
-    
-
+app.post('/login/auth', urlencodedParser, (req, res) => {
+  if (!req.body) return res.sendStatus(400)
+  res.send('welcome, ' + req.body.email)
 })
 
 app.get('/courses', (req, res) => {
