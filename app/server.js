@@ -3,6 +3,7 @@ import React from 'react'
 import { renderToString } from 'react-dom/server'
 import querystring from 'querystring'
 import bodyParser from 'body-parser'
+import request from 'request'
 import App from './components/App'
 import Table from './components/Table'
 import CourseBox from './components/CourseBox'
@@ -32,8 +33,36 @@ app.get('/', (req, res) => {
 })
 
 app.post('/login/auth', urlencodedParser, (req, res) => {
-  if (!req.body) return res.sendStatus(400)
-  res.send('welcome, ' + req.body.email)
+    if (!req.body) return res.sendStatus(400)
+    let email = req.body.email;
+    let pass = req.body.password;
+
+    /*var options = {
+      url: 'http://localhost:9999/api/login',
+      form: {
+        cbsMail: "123@123.dk",
+        password: "cbs"
+      },
+      json: true
+    };
+
+    request.post(options, function(error, response, body) {
+      if (!error && response.statusCode === 200) {
+          res.send(response)
+      }
+      console.log(response)
+    })*/
+
+    request.post({
+      url: 'http://localhost:9999/api/login',
+      form: {
+        cbsMail: "123@123.dk",
+        password: "cbs"
+      }
+    }, function(error, response, body){
+      console.log(body);
+    });
+
 })
 
 app.get('/courses', (req, res) => {
