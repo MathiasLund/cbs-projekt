@@ -20,6 +20,10 @@ exports.getReviews = function(lectureId) {
   return _fetch(URL);
 }
 
+exports.decode = function(string) {
+  return base64decode(string)
+}
+
 function _fetch(URL) {
   return fetch(URL)
     .then(response => response.json())

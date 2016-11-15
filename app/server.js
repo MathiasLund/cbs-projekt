@@ -40,22 +40,15 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
     var options = {
       url: 'http://localhost:9999/api/login',
       json: {
-        cbsMail: "123@123.dk",
-        password: "cbs"
-      },
-      json: true
+        cbsMail: "student@cbs.dk",
+        password: "69015ed720025673825c03b1c1634f46"
+      }
     };
 
-    /*
     request.post(options, function(error, response, body) {
-      if (!error && response.statusCode === 200) {
-          res.send(response)
-      }
-      console.log(response)
-    })*/
-
-    request.post(options, function(error, response, body){
-      res.send(body)
+      let json = JSON.parse(API.decode(body))
+      console.log(json.id)
+      res.send("hey");
     });
 
 })
