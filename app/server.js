@@ -37,15 +37,16 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
     let email = req.body.email;
     let pass = req.body.password;
 
-    /*var options = {
+    var options = {
       url: 'http://localhost:9999/api/login',
-      form: {
+      json: {
         cbsMail: "123@123.dk",
         password: "cbs"
       },
       json: true
     };
 
+    /*
     request.post(options, function(error, response, body) {
       if (!error && response.statusCode === 200) {
           res.send(response)
@@ -53,14 +54,8 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
       console.log(response)
     })*/
 
-    request.post({
-      url: 'http://localhost:9999/api/login',
-      form: {
-        cbsMail: "123@123.dk",
-        password: "cbs"
-      }
-    }, function(error, response, body){
-      console.log(body);
+    request.post(options, function(error, response, body){
+      res.send(body)
     });
 
 })
