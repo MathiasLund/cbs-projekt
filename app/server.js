@@ -4,6 +4,7 @@ import { renderToString } from 'react-dom/server'
 import querystring from 'querystring'
 import bodyParser from 'body-parser'
 import request from 'request'
+import crypto from 'crypto'
 import App from './components/App'
 import Table from './components/Table'
 import CourseBox from './components/CourseBox'
@@ -15,7 +16,6 @@ import API from './api'
 let app = express()
 
 var jsonParser = bodyParser.json()
-// create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
@@ -36,19 +36,23 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400)
     let email = req.body.email;
     let pass = req.body.password;
+    let hashedPass = crypto.createHash('md5').update(pass).digest('hex');
 
     var options = {
       url: 'http://localhost:9999/api/login',
       json: {
-        cbsMail: "student@cbs.dk",
-        password: "69015ed720025673825c03b1c1634f46"
+        cbsMail: email,
+        password: hashedPass
       }
     };
 
     request.post(options, function(error, response, body) {
       let json = JSON.parse(API.decode(body))
-      console.log(json.id)
-      res.send("hey");
+      if(json) {
+        console.log("found");
+      } else {
+        res.send("hey");
+      }
     });
 
 })

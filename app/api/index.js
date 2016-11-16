@@ -24,6 +24,10 @@ exports.decode = function(string) {
   return base64decode(string)
 }
 
+exports.encode = function(string) {
+  return base64encode(string)
+}
+
 function _fetch(URL) {
   return fetch(URL)
     .then(response => response.json())
@@ -39,4 +43,8 @@ function _handleResponse(string) {
 
 function base64decode(string) {
     return new Buffer(string, 'base64').toString('ascii');
+}
+
+function base64encode(string) {
+    return new Buffer(string, 'ascii').toString('base64');
 }
