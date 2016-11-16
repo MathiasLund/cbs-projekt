@@ -20,6 +20,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 app.get('/', (req, res) => {
+
     let component = renderToString(
       <App>
           <NavBar />
@@ -49,9 +50,10 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
     request.post(options, function(error, response, body) {
       let json = JSON.parse(API.decode(body))
       if(json) {
-        console.log("found");
+        req.session.userId = json.id
+        res.send("userId set")
       } else {
-        res.send("hey");
+        res.redirect('/')
       }
     });
 
