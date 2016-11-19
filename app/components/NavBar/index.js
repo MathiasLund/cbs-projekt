@@ -21,13 +21,13 @@ export default class App extends Component {
       					<ul className="nav navbar-nav">
 
       						<li className="active">
-      							<a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown">
-      								Home
+      							<a href="/" className="dropdown-toggle" data-toggle="dropdown">
+      								Forside
       							</a>
       						</li>
                   <li>
-      							<a href="javascript:void(0);" className="dropdown-toggle" data-toggle="dropdown">
-      								Logout
+      							<a href="/logout" className="dropdown-toggle" data-toggle="dropdown">
+      								Log ud
       							</a>
       						</li>
 

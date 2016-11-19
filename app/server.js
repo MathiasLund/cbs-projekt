@@ -21,6 +21,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.get('/', (req, res) => {
 
+    if(req.session.userId) res.redirect('/courses')
+
     let component = renderToString(
       <App>
           <NavBar />
@@ -63,6 +65,9 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
 })
 
 app.get('/courses', (req, res) => {
+
+    if(!req.session.userId) res.redirect('/')
+
     API.getCourses(req.session.userId)
       .then(courses => {
         let component = renderToString(
@@ -110,6 +115,14 @@ app.get('/reviews/:date/:id', function (req, res) {
         component
       );
     })
+
+})
+
+app.get('/logout', function (req, res) {
+
+    req.session.userId = null
+
+    res.redirect('/')
 
 })
 
