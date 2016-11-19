@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Button from '../Button'
 
 export default class ReviewBox extends Component {
     render() {
@@ -22,6 +23,9 @@ export default class ReviewBox extends Component {
                 })}
 
               </div>
+
+              <Button />
+
           </div>
         )
     }
