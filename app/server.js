@@ -37,13 +37,16 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
     if (!req.body) return res.sendStatus(400)
     let email = req.body.email;
     let pass = req.body.password;
-    let hashedPass = crypto.createHash('md5').update(pass).digest('hex');
+    let passWithSalt = pass + API.getSalt();
+    let hashedPassWithSalt = crypto.createHash('md5').update(passWithSalt).digest('hex');
+    let passWithSalt2 = hashedPassWithSalt + API.getSalt();
+    let hashedPassWithSalt2 = crypto.createHash('md5').update(passWithSalt2).digest('hex');
 
     var options = {
       url: 'http://localhost:9999/api/login',
       json: {
         cbsMail: email,
-        password: hashedPass
+        password: hashedPassWithSalt2
       }
     };
 
@@ -51,7 +54,8 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
       let json = JSON.parse(API.decode(body))
       if(json) {
         req.session.userId = json.id
-        res.send("userId set")
+        console.log(json.id);
+        res.send("json.id")
       } else {
         res.redirect('/')
       }
