@@ -6,8 +6,8 @@ var LECTURE_URL = '/api/lecture/'
 var REVIEW_URL = '/api/review/'
 var SALT_KEY = 'n0zaCTADRUuTb@JUp01n%5@(l@IAaLlZ'
 
-exports.getCourses = function() {
-  var URL = BASE_URL + COURSES_URL + "6";
+exports.getCourses = function(userId) {
+  var URL = BASE_URL + COURSES_URL + userId;
   return _fetch(URL);
 }
 

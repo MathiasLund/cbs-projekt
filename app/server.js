@@ -54,8 +54,7 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
       let json = JSON.parse(API.decode(body))
       if(json) {
         req.session.userId = json.id
-        console.log(json.id);
-        res.send("json.id")
+        res.redirect('/courses')
       } else {
         res.redirect('/')
       }
@@ -64,8 +63,7 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
 })
 
 app.get('/courses', (req, res) => {
-
-    API.getCourses()
+    API.getCourses(req.session.userId)
       .then(courses => {
         let component = renderToString(
           <App>
