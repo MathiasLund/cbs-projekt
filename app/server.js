@@ -85,6 +85,8 @@ app.get('/courses', (req, res) => {
 
 app.get('/lectures/:code', function (req, res) {
 
+    if(!req.session.userId) res.redirect('/')
+
     API.getLectures(req.params.code)
       .then(lectures => {
         let component = renderToString(
@@ -102,12 +104,15 @@ app.get('/lectures/:code', function (req, res) {
 })
 
 app.get('/reviews/:date/:id', function (req, res) {
+
+   if(!req.session.userId) res.redirect('/')
+
    API.getReviews(req.params.id)
     .then(reviews => {
       let component = renderToString(
         <App>
             <NavBar />
-            <ReviewBox reviews={reviews} date={req.params.date} />
+            <ReviewBox reviews={reviews} date={req.params.date} lectureId={req.params.id} />
         </App>
       )
 
@@ -115,6 +120,29 @@ app.get('/reviews/:date/:id', function (req, res) {
         component
       );
     })
+})
+
+app.post('/insertReview', urlencodedParser, (req, res) => {
+    if (!req.body) return res.sendStatus(400)
+    let referer = req.header('Referer') || '/';
+    let rating = req.body.rating;
+    let comment = req.body.comment;
+    let lectureId = req.body.lectureId;
+
+    var options = {
+      url: 'http://localhost:9999/api/student/review',
+      json: {
+        rating: rating,
+        comment: comment,
+        userId: req.session.userId,
+        lectureId: lectureId
+      }
+    };
+
+    request.post(options, function(error, response, body) {
+      let json = JSON.parse(API.decode(body))
+      res.redirect(referer);
+    });
 
 })
 

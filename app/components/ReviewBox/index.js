@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import Button from '../Button'
+import AddReview from '../AddReview'
 
 export default class ReviewBox extends Component {
     render() {
-      const {reviews, date} = this.props;
+      const {reviews, date, lectureId} = this.props;
         return (
           <div className="container content-sm">
 
@@ -24,7 +24,8 @@ export default class ReviewBox extends Component {
 
               </div>
 
-              <Button />
+              <hr />
+              <AddReview lectureId={lectureId} />
 
           </div>
         )
