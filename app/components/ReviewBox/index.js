@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import AddReview from '../AddReview'
 
 export default class ReviewBox extends Component {
+
+    deleteReview() {
+      alert("pik")
+    }
+
     render() {
       const {reviews, date, lectureId} = this.props;
         return (
@@ -15,7 +20,8 @@ export default class ReviewBox extends Component {
                       <div className="col-md-3 col-sm-6">
                         <div className="thumbnails thumbnail-style thumbnail-kenburn">
                           <div className="caption">
-                            <h3><a className="hover-effect" href="#">{review.comment}</a></h3>
+                            <h3>{review.comment} <br />
+                            <button className="btn btn-danger" onClick={this.deleteReview}>Slet</button></h3>
                           </div>
                         </div>
                       </div>

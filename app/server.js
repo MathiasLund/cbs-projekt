@@ -143,7 +143,10 @@ app.post('/insertReview', urlencodedParser, (req, res) => {
       let json = JSON.parse(API.decode(body))
       res.redirect(referer);
     });
+})
 
+app.delete('/deleteReview', urlencodedParser, (req, res) => {
+    res.send(req.params)
 })
 
 app.get('/logout', function (req, res) {
