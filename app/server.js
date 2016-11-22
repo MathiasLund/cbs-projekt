@@ -145,8 +145,22 @@ app.post('/insertReview', urlencodedParser, (req, res) => {
     });
 })
 
-app.delete('/deleteReview', urlencodedParser, (req, res) => {
-    res.send(req.params)
+app.get('/deleteReview/:id', (req, res) => {
+    let reviewId = req.params.id
+    let referer = req.header('Referer') || '/';
+
+    var options = {
+      url: 'http://localhost:9999/api/student/review',
+      json: {
+        id: reviewId,
+        userId: req.session.userId
+      }
+    };
+
+    request.delete(options, function(error, response, body) {
+      let json = JSON.parse(API.decode(body))
+      res.redirect(referer)
+    });
 })
 
 app.get('/logout', function (req, res) {
