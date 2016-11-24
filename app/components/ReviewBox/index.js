@@ -3,7 +3,7 @@ import AddReview from '../AddReview'
 
 export default class ReviewBox extends Component {
     render() {
-      const {reviews, date, lectureId} = this.props;
+      const {reviews, date, lectureId, userId} = this.props;
 
       if(reviews.message) {
         return (
@@ -27,13 +27,20 @@ export default class ReviewBox extends Component {
         )
       }
 
+
       var data = reviews.map(review => {
+
+          var deleteBtn;
+          if(review.userId == userId) {
+            deleteBtn = <a role="button" className="btn btn-danger" href={"/deleteReview/" + review.id}>Slet</a>
+          }
+
           return(
             <div className="col-md-3 col-sm-6">
               <div className="thumbnails thumbnail-style thumbnail-kenburn">
                 <div className="caption">
-                  <h3>{review.comment} <br />
-                  <a role="button" className="btn btn-danger" href={"/deleteReview/" + review.id}>Slet</a></h3>
+                  <h3>{review.comment}</h3> <br />
+                    {deleteBtn}
                 </div>
               </div>
             </div>

@@ -112,7 +112,7 @@ app.get('/reviews/:date/:id', function (req, res) {
       let component = renderToString(
         <App>
             <NavBar />
-            <ReviewBox reviews={reviews} date={req.params.date} lectureId={req.params.id} />
+            <ReviewBox userId={req.session.userId} reviews={reviews} date={req.params.date} lectureId={req.params.id} />
         </App>
       )
 
