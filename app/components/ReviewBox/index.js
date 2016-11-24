@@ -33,6 +33,8 @@ export default class ReviewBox extends Component {
           var deleteBtn;
           if(review.userId == userId) {
             deleteBtn = <a role="button" className="btn btn-danger" href={"/deleteReview/" + review.id}>Slet</a>
+          } else {
+            deleteBtn = <a role="button" className="btn btn-warning" href="#">Kan ikke slette</a>
           }
 
           return(
@@ -40,6 +42,7 @@ export default class ReviewBox extends Component {
               <div className="thumbnails thumbnail-style thumbnail-kenburn">
                 <div className="caption">
                   <h3>{review.comment}</h3> <br />
+                  <p>Rating: {review.rating}</p>
                     {deleteBtn}
                 </div>
               </div>
