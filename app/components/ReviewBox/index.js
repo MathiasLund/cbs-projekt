@@ -63,7 +63,8 @@ export default class ReviewBox extends Component {
 
       return (
         <div className="container content-sm">
-
+          <h1>Samlet deltagelse: {reviews.length}</h1>
+          <br />
           <div className="headline"><h2>Reviews</h2> <span>{date}</span></div>
             <div className="row margin-bottom-20">
               {data}
