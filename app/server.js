@@ -56,6 +56,7 @@ app.post('/login/auth', urlencodedParser, (req, res) => {
       let json = JSON.parse(API.decode(body))
       if(json) {
         req.session.userId = json.id
+        req.session.type = json.type
         res.redirect('/courses')
       } else {
         res.redirect('/')
@@ -112,7 +113,7 @@ app.get('/reviews/:date/:id', function (req, res) {
       let component = renderToString(
         <App>
             <NavBar />
-            <ReviewBox userId={req.session.userId} reviews={reviews} date={req.params.date} lectureId={req.params.id} />
+            <ReviewBox userId={req.session.userId} type={req.session.type} reviews={reviews} date={req.params.date} lectureId={req.params.id} />
         </App>
       )
 

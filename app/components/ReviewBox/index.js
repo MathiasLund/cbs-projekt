@@ -3,7 +3,7 @@ import AddReview from '../AddReview'
 
 export default class ReviewBox extends Component {
     render() {
-      const {reviews, date, lectureId, userId} = this.props;
+      const {reviews, date, lectureId, userId, type} = this.props;
 
       if(reviews.message) {
         return (
@@ -31,8 +31,14 @@ export default class ReviewBox extends Component {
       var data = reviews.map(review => {
 
           var deleteBtn;
-          if(review.userId == userId) {
+          if(type == "admin") {
             deleteBtn = <a role="button" className="btn btn-danger" href={"/deleteReview/" + review.id}>Slet</a>
+          } else if(type == "student") {
+            if(review.userId == userId) {
+              deleteBtn = <a role="button" className="btn btn-danger" href={"/deleteReview/" + review.id}>Slet</a>
+            } else {
+              deleteBtn = <a role="button" className="btn btn-warning" href="#">Kan ikke slette</a>
+            }
           } else {
             deleteBtn = <a role="button" className="btn btn-warning" href="#">Kan ikke slette</a>
           }
