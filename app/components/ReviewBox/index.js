@@ -27,6 +27,11 @@ export default class ReviewBox extends Component {
         )
       }
 
+      var addReview;
+      if(type == "student") {
+        addReview = <AddReview lectureId={lectureId} />
+      }
+
 
       var data = reviews.map(review => {
 
@@ -65,7 +70,7 @@ export default class ReviewBox extends Component {
             </div>
 
             <hr />
-            <AddReview lectureId={lectureId} />
+            {addReview}
 
         </div>
       )
