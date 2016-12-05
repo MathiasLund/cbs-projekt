@@ -146,15 +146,19 @@ app.post('/insertReview', urlencodedParser, (req, res) => {
     });
 })
 
-app.get('/deleteReview/:id', (req, res) => {
+app.get('/deleteReview/:id/:userId?', (req, res) => {
     let reviewId = req.params.id
+    let userId = req.session.userId
+    if(req.params.userId) {
+      userId = req.params.userId
+    }
     let referer = req.header('Referer') || '/';
 
     var options = {
       url: 'http://localhost:9999/api/student/review',
       json: {
         id: reviewId,
-        userId: req.session.userId
+        userId: userId
       }
     };
 

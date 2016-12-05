@@ -5,6 +5,11 @@ export default class ReviewBox extends Component {
     render() {
       const {reviews, date, lectureId, userId, type} = this.props;
 
+      var addReview;
+      if(type == "student") {
+        addReview = <AddReview lectureId={lectureId} />
+      }
+
       if(reviews.message) {
         return (
           <div className="container content-sm">
@@ -21,23 +26,17 @@ export default class ReviewBox extends Component {
               </div>
 
               <hr />
-              <AddReview lectureId={lectureId} />
+              {addReview}
 
           </div>
         )
       }
 
-      var addReview;
-      if(type == "student") {
-        addReview = <AddReview lectureId={lectureId} />
-      }
-
 
       var data = reviews.map(review => {
-
           var deleteBtn;
           if(type == "admin") {
-            deleteBtn = <a role="button" className="btn btn-danger" href={"/deleteReview/" + review.id}>Slet</a>
+            deleteBtn = <a role="button" className="btn btn-danger" href={"/deleteReview/" + review.id + "/" + review.userId}>Slet</a>
           } else if(type == "student") {
             if(review.userId == userId) {
               deleteBtn = <a role="button" className="btn btn-danger" href={"/deleteReview/" + review.id}>Slet</a>
